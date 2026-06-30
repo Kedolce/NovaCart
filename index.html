@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>novacart</title>
+  </head>
+
+  <body class="bg-gray-100">
+    <!--HEADER-->
+    <header class="bg-blue-400 shadow">
+      <!--LEFT-->
+      <div class="flex px-6 py-4 justify-between gap-8 max-w-7xl mx-auto">
+        <div class="flex gap-8 items-center">
+          <button class="cursor-pointer font-black text-2xl">☰</button>
+          <h1 class="font-bold cursor-pointer text-2xl">NovaCart</h1>
+        </div>
+
+        <!--CENTER-->
+        <div class="flex-1">
+          <label for="search" class="sr-only">
+            <!--SCREEN READER-->
+            Search Product
+          </label>
+
+          <input
+            id="search"
+            type="text"
+            placeholder="Search products..."
+            class="w-full rounded-lg bg-white px-4 py-2 outline-none"
+          />
+        </div>
+
+        <!--RIGHT-->
+        <div class="flex gap-8">
+          <button id="cart" class="bg-gray-100 rounded-full p-2 cursor-pointer">
+            🛒
+          </button>
+          <button id="user" class="bg-gray-100 rounded-full p-2 cursor-pointer">
+            👤
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto flex">
+      <aside class="w-64 bg-white border-r min-h-screen">Sidebar</aside>
+
+      <main class="flex-1 p-6">Product Area</main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
