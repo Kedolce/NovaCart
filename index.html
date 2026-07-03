@@ -13,8 +13,16 @@
       <!--LEFT-->
       <div class="flex px-6 py-4 justify-between gap-8 max-w-7xl mx-auto">
         <div class="flex gap-8 items-center">
-          <button class="cursor-pointer font-black text-2xl  text-white lg:hover:text-emerald-400 transition-hover duration-300">☰</button>
-          <h1 class="font-bold cursor-pointer text-2xl text-white tracking-tight">NovaCart</h1>
+          <button
+            class="cursor-pointer font-black text-2xl text-white lg:hover:text-emerald-400 transition-hover duration-300"
+          >
+            ☰
+          </button>
+          <h1
+            class="font-bold cursor-pointer text-2xl text-white tracking-tight hover:text-emerald-400 duration-300 transition-colors"
+          >
+            NovaCart
+          </h1>
         </div>
 
         <!--CENTER-->
@@ -33,12 +41,12 @@
         </div>
 
         <!--RIGHT-->
-        <div class="flex gap-8">
-          <button id="cart" class="bg-gray-100 rounded-full p-2 cursor-pointer">
-            🛒
+        <div class="flex gap-5 ">
+          <button id="cart" class="cursor-pointer hover:bg-gray-700 p-2 transition-colors duration-300 rounded-full">
+            <img src="/src/assets/grocery-store.png" alt="Cart" class="w-6" />
           </button>
-          <button id="user" class="bg-gray-100 rounded-full p-2 cursor-pointer">
-            👤
+          <button id="user" class="cursor-pointer hover:bg-gray-700 p-2 transition-colors duration-300 rounded-full">
+            <img src="/src/assets/user.png" alt="User" class="w-6" />
           </button>
         </div>
       </div>
@@ -47,7 +55,10 @@
     <div class="max-w-7xl mx-auto flex">
       <!--<aside class="w-64 bg-emerald-100 border-r min-h-screen">Sidebar</aside>-->
 
-      <main class="flex gap-8 p-6 flex-wrap justify-center" id="productArea"></main>
+      <main
+        class="flex gap-8 p-6 flex-wrap justify-center"
+        id="productArea"
+      ></main>
     </div>
 
     <script type="module" src="/src/main.js"></script>

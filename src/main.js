@@ -135,30 +135,43 @@ const products = [
   },
 ];
 
+const cart = [];
+
 const productArea = document.getElementById("productArea");
 
-    function createProductCard(product) {
-    const div = document.createElement("div");
-    div.classList.add(
-        "w-64",
-        "border",
-        "shadow-lg",
-        "p-4",
-        "pb-8",
-        "rounded-lg",
-    );
-  
+function createProductCard(product) {
+  const div = document.createElement("div");
+  div.classList.add("w-64", "border", "shadow-lg", "p-4", "pb-8", "rounded-lg");
+
   div.innerHTML = `
-        <img src="${product.img}" alt="${product.name}" class="cardImgProduct w-full rounded-lg mb-4">
+        <img src="${product.img}" alt="${product.name}" class=" w-full rounded-lg mb-4">
         <p class="cardNameProduct font-bold">${product.name}</p>
         <p>Rp. ${product.price}</p>
-        <p>Stock ${product.stock}</p>
+        <p>Stock: ${product.stock}</p>
         <button class="btnBuy mt-4 rounded-lg bg-emerald-400 hover:bg-emerald-600 text-white font-bold p-1 transition-all duration-300 w-full cursor-pointer">Beli</button>
     `;
+
+  const btnBuy = div.querySelector(".btnBuy");
+  btnBuy.addEventListener("click", () => {
+    let productFound = false;
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].product.id === product.id) {
+        cart[i].quantity++;
+        productFound = true;
+        break;
+      }
+    }
+
+    if (!productFound) {
+      cart.push({product, quantity: 1});
+    }
+    console.log(cart);
+  });
 
   productArea.appendChild(div);
 }
 
 for (let i = 0; i < products.length; i++) {
   createProductCard(products[i]);
-};
+}
