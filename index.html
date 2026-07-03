@@ -7,60 +7,125 @@
     <title>NovaCart</title>
   </head>
 
-  <body>
-    <!--HEADER-->
+  <body class="bg-gray-100">
+
+    <!-- HEADER -->
     <header class="bg-slate-900 shadow">
-      <!--LEFT-->
-      <div class="flex px-6 py-4 justify-between gap-8 max-w-7xl mx-auto">
-        <div class="flex gap-8 items-center">
+      <div class="max-w-7xl mx-auto flex justify-between items-center gap-8 px-6 py-4">
+
+        <!-- LEFT -->
+        <div class="flex items-center gap-8">
           <button
-            class="cursor-pointer font-black text-2xl text-white lg:hover:text-emerald-400 transition-hover duration-300"
+            id="btnMenu"
+            class="text-2xl font-black text-white hover:text-emerald-400 transition-colors cursor-pointer"
           >
             ☰
           </button>
+
           <h1
-            class="font-bold cursor-pointer text-2xl text-white tracking-tight hover:text-emerald-400 duration-300 transition-colors"
+            class="text-2xl font-bold text-white tracking-tight cursor-pointer hover:text-emerald-400 transition-colors"
           >
             NovaCart
           </h1>
         </div>
 
-        <!--CENTER-->
+        <!-- SEARCH -->
         <div class="flex-1">
-          <label for="search" class="sr-only">
-            <!--SCREEN READER-->
-            Search Product
-          </label>
+          <label for="search" class="sr-only">Search Product</label>
 
           <input
             id="search"
             type="text"
             placeholder="Search products..."
-            class="w-full rounded-xl bg-white px-4 py-2 outline-none"
+            class="w-full rounded-xl px-4 py-2 bg-white outline-none"
           />
         </div>
 
-        <!--RIGHT-->
-        <div class="flex gap-5 ">
-          <button id="cart" class="cursor-pointer hover:bg-gray-700 p-2 transition-colors duration-300 rounded-full">
-            <img src="/src/assets/grocery-store.png" alt="Cart" class="w-6" />
+        <!-- RIGHT -->
+        <div class="flex gap-5">
+
+          <button
+            id="cart"
+            class="p-2 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            <img
+              src="/src/assets/grocery-store.png"
+              alt="Cart"
+              class="w-6"
+            />
           </button>
-          <button id="user" class="cursor-pointer hover:bg-gray-700 p-2 transition-colors duration-300 rounded-full">
-            <img src="/src/assets/user.png" alt="User" class="w-6" />
+
+          <button
+            id="user"
+            class="p-2 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+          >
+            <img
+              src="/src/assets/user.png"
+              alt="User"
+              class="w-6"
+            />
           </button>
+
         </div>
+
       </div>
     </header>
 
-    <div class="max-w-7xl mx-auto flex">
-      <!--<aside class="w-64 bg-emerald-100 border-r min-h-screen">Sidebar</aside>-->
+    <!-- ================= PRODUCT PAGE ================= -->
 
+    <div
+      id="productPage"
+      class=" max-w-7xl mx-auto flex"
+    >
+
+      <!-- SIDEBAR (NANTI) -->
+      <aside
+        id="sidebar"
+        class="hidden w-64 border-r bg-white min-h-screen"
+      >
+        Sidebar
+      </aside>
+
+      <!-- PRODUCT AREA -->
       <main
-        class="flex gap-8 p-6 flex-wrap justify-center"
         id="productArea"
+        class="flex flex-wrap justify-center gap-8 p-6 flex-1"
       ></main>
+
+    </div>
+
+    <!-- ================= CART PAGE ================= -->
+
+    <div
+      id="cartPage"
+      class=" hidden max-w-7xl mx-auto p-6"
+    >
+
+      <div class="mb-6 flex items-center justify-between">
+
+        <h2 class="text-3xl font-bold">
+          Shopping Cart
+        </h2>
+
+        <button
+          id="btnBackToShop"
+          class="rounded-lg bg-emerald-500 px-4 py-2 text-white hover:bg-emerald-600"
+        >
+          ← Back
+        </button>
+
+      </div>
+
+      <div
+        id="cartArea"
+        class="rounded-xl bg-white p-6 shadow"
+      >
+        <!-- renderCart() -->
+      </div>
+
     </div>
 
     <script type="module" src="/src/main.js"></script>
+
   </body>
 </html>

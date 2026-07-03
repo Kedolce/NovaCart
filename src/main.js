@@ -138,10 +138,19 @@ const products = [
 const cart = [];
 
 const productArea = document.getElementById("productArea");
+const cartArea = document.getElementById("cartArea");
 
 function createProductCard(product) {
   const div = document.createElement("div");
-  div.classList.add("w-64", "border", "shadow-lg", "p-4", "pb-8", "rounded-lg");
+  div.classList.add(
+    "w-64",
+    "border",
+    "border-gray-300",
+    "shadow-lg",
+    "p-4",
+    "pb-8",
+    "rounded-lg",
+  );
 
   div.innerHTML = `
         <img src="${product.img}" alt="${product.name}" class=" w-full rounded-lg mb-4">
@@ -164,12 +173,34 @@ function createProductCard(product) {
     }
 
     if (!productFound) {
-      cart.push({product, quantity: 1});
+      cart.push({ product, quantity: 1 });
     }
+
     console.log(cart);
+    renderCart();
   });
 
   productArea.appendChild(div);
+}
+
+function createCartItem(cartItem) {
+
+}
+
+function renderCart() {
+  cartArea.innerHTML = "";
+
+  if(cart.length === 0){
+    cartArea.innerHTML = `
+      <p class="text-green-200">Keranjang anda masih kosong.<//p>
+    `;
+    return;
+  }
+
+  for(let i = 0; i < cart,length; i++){
+    createCartItem(cartItem);
+    
+  }
 }
 
 for (let i = 0; i < products.length; i++) {
