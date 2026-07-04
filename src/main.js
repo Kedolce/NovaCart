@@ -1,5 +1,6 @@
 import "./style.css";
 
+// Data
 const products = [
   {
     id: 1,
@@ -134,12 +135,21 @@ const products = [
     img: "/src/assets/keychronk2.jpg",
   },
 ];
-
 const cart = [];
 
+// pages
+const productPage = document.getElementById("productPage");
+const cartPage = document.getElementById("cartPage");
+
+// areas
 const productArea = document.getElementById("productArea");
 const cartArea = document.getElementById("cartArea");
 
+// buttons
+const btnCart = document.getElementById("btnCart");
+const btnBackToShop = document.getElementById("btnBackToShop");
+
+// functions
 function createProductCard(product) {
   const div = document.createElement("div");
   div.classList.add(
@@ -176,7 +186,6 @@ function createProductCard(product) {
       cart.push({ product, quantity: 1 });
     }
 
-    console.log(cart);
     renderCart();
   });
 
@@ -184,25 +193,60 @@ function createProductCard(product) {
 }
 
 function createCartItem(cartItem) {
+  const div = document.createElement("div");
 
+  div.classList.add(
+    "w-64",
+    "border",
+    "border-gray-300",
+    "shadow-lg",
+    "p-4",
+    "pb-8",
+    "rounded-lg",
+  );
+
+  div.innerHTML = `
+      <img src="${cartItem.product.img}" alt="${cartItem.product.name}" class=" w-full rounded-lg mb-4">
+      <p class="cardNameProduct font-bold">${cartItem.product.name}</p>
+      <p>Rp. ${cartItem.product.price}</p>
+      <p>Quantity: ${cartItem.quantity}</p>
+      <p>Total : ${cartItem.product.price * cartItem.quantity}</p>
+  `;
+  return div;
 }
 
 function renderCart() {
   cartArea.innerHTML = "";
 
-  if(cart.length === 0){
+  if (cart.length === 0) {
     cartArea.innerHTML = `
-      <p class="text-green-200">Keranjang anda masih kosong.<//p>
+      <p class="text-green-200">Keranjang anda masih kosong.</p>
     `;
     return;
   }
 
-  for(let i = 0; i < cart,length; i++){
-    createCartItem(cartItem);
-    
+  for (let i = 0; i < cart.length; i++) {
+    const cartItem = cart[i];
+    const cartElement = createCartItem(cartItem);
+
+    cartArea.appendChild(cartElement);
   }
 }
 
+// event
+btnCart.addEventListener("click", () => {
+  productPage.classList.add("hidden");
+  cartPage.classList.remove("hidden");
+});
+
+btnBackToShop.addEventListener("click", () => {
+  productPage.classList.remove("hidden");
+  cartPage.classList.add("hidden");
+})
+
+// render
 for (let i = 0; i < products.length; i++) {
   createProductCard(products[i]);
 }
+
+renderCart();
