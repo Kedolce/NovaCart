@@ -150,7 +150,8 @@ const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
 
 // functions
-function createProductCard(product) {
+// product functions
+function createProductItem(productItem) {
   const div = document.createElement("div");
   div.classList.add(
     "w-64",
@@ -163,19 +164,20 @@ function createProductCard(product) {
   );
 
   div.innerHTML = `
-        <img src="${product.img}" alt="${product.name}" class=" w-full rounded-lg mb-4">
-        <p class="cardNameProduct font-bold">${product.name}</p>
-        <p>Rp. ${product.price}</p>
-        <p>Stock: ${product.stock}</p>
-        <button class="btnBuy mt-4 rounded-lg bg-emerald-400 hover:bg-emerald-600 text-white font-bold p-1 transition-all duration-300 w-full cursor-pointer">Beli</button>
+    <img src="${productItem.img}" alt="${productItem.name}" class=" w-full rounded-lg mb-4">
+    <p class="cardNameproductItem font-bold">${productItem.name}</p>
+    <p>Rp. ${productItem.price}</p>
+    <p>Stock: ${productItem.stock}</p>
+    <button class="btnPurchase mt-4 rounded-lg bg-emerald-400 hover:bg-emerald-600 text-white font-bold p-1 transition-all duration-300 w-full cursor-pointer">Purchase</button>
     `;
 
-  const btnBuy = div.querySelector(".btnBuy");
-  btnBuy.addEventListener("click", () => {
+  // event btnPurchase
+  const btnPurchase = div.querySelector(".btnPurchase");
+  btnPurchase.addEventListener("click", () => {
     let productFound = false;
 
     for (let i = 0; i < cart.length; i++) {
-      if (cart[i].product.id === product.id) {
+      if (cart[i].productItem.id === productItem.id) {
         cart[i].quantity++;
         productFound = true;
         break;
@@ -183,15 +185,24 @@ function createProductCard(product) {
     }
 
     if (!productFound) {
-      cart.push({ product, quantity: 1 });
+      cart.push({ productItem, quantity: 1 });
     }
 
     renderCart();
   });
-
-  productArea.appendChild(div);
+  return div;
 }
 
+function renderProduct() {
+  for (let i = 0; i < products.length; i++) {
+    const productItem = products[i];
+    const productElement = createProductItem(productItem);
+
+    productArea.appendChild(productElement);
+  }
+}
+
+// cart functions
 function createCartItem(cartItem) {
   const div = document.createElement("div");
 
@@ -242,11 +253,8 @@ btnCart.addEventListener("click", () => {
 btnBackToShop.addEventListener("click", () => {
   productPage.classList.remove("hidden");
   cartPage.classList.add("hidden");
-})
+});
 
 // render
-for (let i = 0; i < products.length; i++) {
-  createProductCard(products[i]);
-}
-
+renderProduct();
 renderCart();
