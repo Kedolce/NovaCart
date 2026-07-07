@@ -150,8 +150,27 @@ const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
 
 // functions
+// event functions
+function addToCart(product) {
+  let productFound = false;
+
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].product.id === product.id) {
+      cart[i].quantity++;
+      productFound = true;
+      break;
+    }
+  }
+
+  if (!productFound) {
+    cart.push({ product, quantity: 1 });
+  }
+
+  renderCart();
+}
+
 // product functions
-function createProductItem(productItem) {
+function createProductItem(product) {
   const div = document.createElement("div");
   div.classList.add(
     "w-64",
@@ -164,36 +183,24 @@ function createProductItem(productItem) {
   );
 
   div.innerHTML = `
-    <img src="${productItem.img}" alt="${productItem.name}" class=" w-full rounded-lg mb-4">
-    <p class="cardNameproductItem font-bold">${productItem.name}</p>
-    <p>Rp. ${productItem.price}</p>
-    <p>Stock: ${productItem.stock}</p>
+    <img src="${product.img}" alt="${product.name}" class=" w-full rounded-lg mb-4">
+    <p class="cardNameProduct font-bold">${product.name}</p>
+    <p>Rp. ${product.price}</p>
+    <p>Stock: ${product.stock}</p>
     <button class="btnPurchase mt-4 rounded-lg bg-emerald-400 hover:bg-emerald-600 text-white font-bold p-1 transition-all duration-300 w-full cursor-pointer">Purchase</button>
     `;
 
   // event btnPurchase
   const btnPurchase = div.querySelector(".btnPurchase");
   btnPurchase.addEventListener("click", () => {
-    let productFound = false;
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].productItem.id === productItem.id) {
-        cart[i].quantity++;
-        productFound = true;
-        break;
-      }
-    }
-
-    if (!productFound) {
-      cart.push({ productItem, quantity: 1 });
-    }
-
-    renderCart();
+    addToCart(product);
   });
   return div;
 }
 
 function renderProduct() {
+  productArea.innerHTML = "";
+
   for (let i = 0; i < products.length; i++) {
     const productItem = products[i];
     const productElement = createProductItem(productItem);
@@ -214,6 +221,7 @@ function createCartItem(cartItem) {
     "p-4",
     "pb-8",
     "rounded-lg",
+    "cursor-pointer",
   );
 
   div.innerHTML = `
@@ -231,7 +239,7 @@ function renderCart() {
 
   if (cart.length === 0) {
     cartArea.innerHTML = `
-      <p class="text-green-200">Keranjang anda masih kosong.</p>
+      <p class="text-yellow-400 text-center">Keranjang anda masih kosong.</p>
     `;
     return;
   }
