@@ -17,13 +17,13 @@
         <div class="flex items-center gap-8">
           <button
             id="btnMenu"
-            class="text-2xl font-black text-white hover:text-emerald-400 transition-colors cursor-pointer"
+            class="text-2xl font-black text-white lg:hover:text-emerald-400 transition-colors cursor-pointer"
           >
             ☰
           </button>
 
           <h1
-            class="text-2xl font-bold text-white tracking-tight cursor-pointer hover:text-emerald-400 transition-colors"
+            class="text-2xl font-bold text-white tracking-tight cursor-pointer lg:hover:text-emerald-400 transition-colors"
           >
             NovaCart
           </h1>
@@ -46,7 +46,7 @@
 
           <button
             id="btnCart"
-            class="p-2 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+            class="p-2 rounded-full lg:hover:bg-gray-700 transition-colors cursor-pointer"
           >
             <img
               src="/src/assets/grocery-store.png"
@@ -57,7 +57,7 @@
 
           <button
             id="btnUser"
-            class="p-2 rounded-full hover:bg-gray-700 transition-colors cursor-pointer"
+            class="p-2 rounded-full lg:hover:bg-gray-700 transition-colors cursor-pointer"
           >
             <img
               src="/src/assets/user.png"
@@ -109,7 +109,7 @@
 
         <button
           id="btnBackToShop"
-          class="rounded-lg bg-emerald-500 px-4 py-2 text-white hover:bg-emerald-600 cursor-pointer flex justify-center items-center gap-2"
+          class="rounded-lg border-2 text-slate-900 border-slate-900 px-4 py-2 lg:lg:hover:bg-slate-200 cursor-pointer flex justify-center items-center gap-2"
         >
           <img src="/src/assets/left-arrow.png" alt="back" class="w-3"> Back
         </button>
@@ -118,7 +118,7 @@
 
       <div
         id="cartArea"
-        class=" p-6 flex flex-wrap gap-8"
+        class=" grid  md:grid-cols-2 gap-10"
       >
         <!-- renderCart() -->
       </div>

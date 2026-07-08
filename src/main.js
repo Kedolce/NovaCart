@@ -169,6 +169,17 @@ function addToCart(product) {
   renderCart();
 }
 
+function increaseQuantity(productId) {
+  console.log("plus");
+  for (let i = 0; i < cart.length; i++) {
+    if (productId === cart[i].product.id) {
+      cart[i].quantity++;
+      break;
+    }
+  }
+  renderCart();
+}
+
 // product functions
 function createProductItem(product) {
   const div = document.createElement("div");
@@ -202,8 +213,8 @@ function renderProduct() {
   productArea.innerHTML = "";
 
   for (let i = 0; i < products.length; i++) {
-    const productItem = products[i];
-    const productElement = createProductItem(productItem);
+    const product = products[i];
+    const productElement = createProductItem(product);
 
     productArea.appendChild(productElement);
   }
@@ -214,23 +225,35 @@ function createCartItem(cartItem) {
   const div = document.createElement("div");
 
   div.classList.add(
-    "w-64",
+    "max-w-full",
     "border",
     "border-gray-300",
     "shadow-lg",
     "p-4",
-    "pb-8",
     "rounded-lg",
     "cursor-pointer",
+    "flex",
+    "gap-4",
   );
 
   div.innerHTML = `
-      <img src="${cartItem.product.img}" alt="${cartItem.product.name}" class=" w-full rounded-lg mb-4">
+      <img src="${cartItem.product.img}" alt="${cartItem.product.name}" class="w-36 h-36 object-cover rounded-lg">
+      <div>
       <p class="cardNameProduct font-bold">${cartItem.product.name}</p>
       <p>Rp. ${cartItem.product.price}</p>
       <p>Quantity: ${cartItem.quantity}</p>
       <p>Total : ${cartItem.product.price * cartItem.quantity}</p>
+      <div class="flex gap-4 mt-2">
+      <button class="cartPlusBtn bg-emerald-400 py-2 px-3 rounded-lg cursor-pointer lg:hover:bg-emerald-600 transition-colors duration-300"><img src="/src/assets/plus.png" alt="plusBtn" class="w-4"></button>
+      <button class="cartMinusBtn bg-red-600 py-2 px-3 rounded-lg cursor-pointer lg:hover:bg-red-800 transition-colors duration-300"><img src="/src/assets/minus-sign.png" alt="minusBtn" class="w-4"></button>
+      <button class="cartDeleteBtn bg-red-600 p-2 rounded-lg text-white flex gap-1 items-center cursor-pointer lg:hover:bg-red-800 transition-colors duration-300"><img src="/src/assets/delete.png" alt="minusBtn" class="w-4 h-4">Delete</button>
+      </div>
+      </div>
   `;
+  const cartPlusBtn = div.querySelector(".cartPlusBtn");
+  cartPlusBtn.addEventListener("click", () => {
+    increaseQuantity(cartItem.product.id);
+  });
   return div;
 }
 
