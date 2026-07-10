@@ -8,11 +8,11 @@
   </head>
 
   <body class="bg-gray-100">
-
     <!-- HEADER -->
     <header class="bg-slate-900 shadow">
-      <div class="max-w-7xl mx-auto flex justify-between items-center gap-8 px-6 py-4">
-
+      <div
+        class="max-w-7xl mx-auto flex justify-between items-center gap-8 px-6 py-4"
+      >
         <!-- LEFT -->
         <div class="flex items-center gap-8">
           <button
@@ -43,89 +43,62 @@
 
         <!-- RIGHT -->
         <div class="flex gap-4">
-
           <button
             id="btnCart"
             class="p-2 rounded-full lg:hover:bg-gray-700 transition-colors cursor-pointer"
           >
-            <img
-              src="/src/assets/grocery-store.png"
-              alt="Cart"
-              class="w-6"
-            />
+            <img src="/src/assets/grocery-store.png" alt="Cart" class="w-6" />
           </button>
 
           <button
             id="btnUser"
             class="p-2 rounded-full lg:hover:bg-gray-700 transition-colors cursor-pointer"
           >
-            <img
-              src="/src/assets/user.png"
-              alt="User"
-              class="w-6"
-            />
+            <img src="/src/assets/user.png" alt="User" class="w-6" />
           </button>
-
         </div>
-
       </div>
     </header>
 
     <!-- ================= PRODUCT PAGE ================= -->
 
-    <div
-      id="productPage"
-      class=" max-w-7xl mx-auto flex"
-    >
-
+    <div id="productPage" class="max-w-7xl mx-auto">
       <!-- SIDEBAR (NANTI) -->
-      <aside
-        id="sidebar"
-        class="hidden w-64 border-r bg-white min-h-screen"
-      >
+      <aside id="sidebar" class="hidden w-64 border-r bg-white min-h-screen">
         Sidebar
       </aside>
 
       <!-- PRODUCT AREA -->
       <main
         id="productArea"
-        class="flex flex-wrap justify-center gap-8 p-6 flex-1"
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-10 p-4"
       ></main>
-
     </div>
 
     <!-- ================= CART PAGE ================= -->
 
-    <div
-      id="cartPage"
-      class="hidden max-w-7xl mx-auto p-6"
-    >
-
+    <div id="cartPage" class="hidden max-w-7xl mx-auto p-6">
       <div class="mb-6 flex items-center justify-between">
-
-        <h2 class="text-3xl font-bold">
-          Shopping Cart
-        </h2>
+        <h2 class="text-3xl font-bold">Shopping Cart</h2>
 
         <button
           id="btnBackToShop"
-          class="rounded-lg border-2 text-slate-900 border-slate-900 px-4 py-2 lg:lg:hover:bg-slate-200 cursor-pointer flex justify-center items-center gap-2"
+          class="rounded-lg border-2 text-slate-900 border-slate-900 px-4 py-2 lg:hover:bg-slate-200 cursor-pointer flex justify-center items-center gap-2 transition-colors duration-300"
         >
-          <img src="/src/assets/left-arrow.png" alt="back" class="w-3"> Back
+          <img src="/src/assets/left-arrow.png" alt="back" class="w-3" /> Back
         </button>
-
       </div>
 
-      <div
-        id="cartArea"
-        class=" grid  md:grid-cols-2 gap-10"
-      >
+      <div id="cartArea" class="grid md:grid-cols-2 gap-10">
         <!-- renderCart() -->
       </div>
 
+        <div id="cartSummary" class="p-5 border-t mt-10 border-emerald-400">
+          <p>Total: <span id="totalPrice"> Rp 0</span></p>
+          <button class="btnCheckOut hidden bg-emerald-400 text-white rounded-lg py-2 px-4 mt-2 lg:hover:bg-emerald-600 transition-colors duration-300 cursor-pointer">Checkout</button>
+        </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
-
   </body>
 </html>

@@ -144,12 +144,29 @@ const cartPage = document.getElementById("cartPage");
 // areas
 const productArea = document.getElementById("productArea");
 const cartArea = document.getElementById("cartArea");
+const totalPrice = document.getElementById("totalPrice");
 
 // buttons
 const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
 
 // functions
+function calculateTotal() {
+  let totalSpending = 0;
+
+  for (let i = 0; i < cart.length; i++) {
+    totalSpending += cart[i].quantity * cart[i].product.price;
+  }
+
+  return totalSpending;
+}
+
+// render func
+function renderTotal() {
+  const total = calculateTotal();
+  totalPrice.innerText = `Rp ${total}`;
+}
+
 // event functions
 function addToCart(product) {
   let productFound = false;
@@ -177,6 +194,7 @@ function increaseQuantity(productId) {
     }
   }
   renderCart();
+  renderTotal();
 }
 
 function decreaseQuantity(productId) {
@@ -191,6 +209,7 @@ function decreaseQuantity(productId) {
     }
   }
   renderCart();
+  renderTotal();
 }
 
 function deleteItem(productId) {
@@ -198,17 +217,17 @@ function deleteItem(productId) {
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].product.id === productId) {
       cart.splice(i, 1);
+      break;
     }
-    break;
   }
   renderCart();
+  renderTotal();
 }
 
 // product functions
 function createProductItem(product) {
   const div = document.createElement("div");
   div.classList.add(
-    "w-64",
     "border",
     "border-gray-300",
     "shadow-lg",
@@ -218,7 +237,7 @@ function createProductItem(product) {
   );
 
   div.innerHTML = `
-    <img src="${product.img}" alt="${product.name}" class=" w-full rounded-lg mb-4">
+    <img src="${product.img}" alt="${product.name}" class=" h-36 w-full object-cover rounded-lg mb-4">
     <p class="cardNameProduct font-bold">${product.name}</p>
     <p>Rp. ${product.price}</p>
     <p>Stock: ${product.stock}</p>
@@ -302,7 +321,7 @@ function renderCart() {
 
   if (cart.length === 0) {
     cartArea.innerHTML = `
-      <p class="text-yellow-400 text-center">Keranjang anda masih kosong.</p>
+      <p class="text-gray-400 text-center col-span-full">Your cart is currently empty.</p>
     `;
     return;
   }
@@ -313,6 +332,8 @@ function renderCart() {
 
     cartArea.appendChild(cartElement);
   }
+
+  renderTotal();
 }
 
 // event
@@ -329,3 +350,4 @@ btnBackToShop.addEventListener("click", () => {
 // render
 renderProduct();
 renderCart();
+renderTotal();
