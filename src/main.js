@@ -149,6 +149,7 @@ const totalPrice = document.getElementById("totalPrice");
 // buttons
 const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
+const btnCheckout = document.querySelector(".btnCheckout");
 
 // functions
 function calculateTotal() {
@@ -159,69 +160,6 @@ function calculateTotal() {
   }
 
   return totalSpending;
-}
-
-// render func
-function renderTotal() {
-  const total = calculateTotal();
-  totalPrice.innerText = `Rp ${total}`;
-}
-
-// event functions
-function addToCart(product) {
-  let productFound = false;
-
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].product.id === product.id) {
-      cart[i].quantity++;
-      productFound = true;
-      break;
-    }
-  }
-
-  if (!productFound) {
-    cart.push({ product, quantity: 1 });
-  }
-
-  renderCart();
-}
-
-function increaseQuantity(productId) {
-  for (let i = 0; i < cart.length; i++) {
-    if (productId === cart[i].product.id) {
-      cart[i].quantity++;
-      break;
-    }
-  }
-  renderCart();
-  renderTotal();
-}
-
-function decreaseQuantity(productId) {
-  for (let i = 0; i < cart.length; i++) {
-    if (productId === cart[i].product.id) {
-      if (cart[i].quantity === 1) {
-        cart.splice(i, 1);
-        break;
-      }
-      cart[i].quantity--;
-      break;
-    }
-  }
-  renderCart();
-  renderTotal();
-}
-
-function deleteItem(productId) {
-  console.log("delt");
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].product.id === productId) {
-      cart.splice(i, 1);
-      break;
-    }
-  }
-  renderCart();
-  renderTotal();
 }
 
 // product functions
@@ -250,17 +188,6 @@ function createProductItem(product) {
     addToCart(product);
   });
   return div;
-}
-
-function renderProduct() {
-  productArea.innerHTML = "";
-
-  for (let i = 0; i < products.length; i++) {
-    const product = products[i];
-    const productElement = createProductItem(product);
-
-    productArea.appendChild(productElement);
-  }
 }
 
 // cart functions
@@ -316,8 +243,23 @@ function createCartItem(cartItem) {
   return div;
 }
 
+// render function
+function renderProduct() {
+  productArea.innerHTML = "";
+
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const productElement = createProductItem(product);
+
+    productArea.appendChild(productElement);
+  }
+}
+
 function renderCart() {
   cartArea.innerHTML = "";
+
+  renderCheckout();
+  renderTotal();
 
   if (cart.length === 0) {
     cartArea.innerHTML = `
@@ -336,6 +278,72 @@ function renderCart() {
   renderTotal();
 }
 
+function renderTotal() {
+  const total = calculateTotal();
+  totalPrice.innerText = `Rp ${total}`;
+}
+
+function renderCheckout() {
+  if (cart.length === 0) {
+    btnCheckout.classList.add("hidden");
+  } else {
+    btnCheckout.classList.remove("hidden");
+  }
+}
+
+// event functions
+function addToCart(product) {
+  let productFound = false;
+
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].product.id === product.id) {
+      cart[i].quantity++;
+      productFound = true;
+      break;
+    }
+  }
+
+  if (!productFound) {
+    cart.push({ product, quantity: 1 });
+  }
+
+  renderCart();
+}
+
+function increaseQuantity(productId) {
+  for (let i = 0; i < cart.length; i++) {
+    if (productId === cart[i].product.id) {
+      cart[i].quantity++;
+      break;
+    }
+  }
+  renderCart();
+}
+
+function decreaseQuantity(productId) {
+  for (let i = 0; i < cart.length; i++) {
+    if (productId === cart[i].product.id) {
+      if (cart[i].quantity === 1) {
+        cart.splice(i, 1);
+        break;
+      }
+      cart[i].quantity--;
+      break;
+    }
+  }
+  renderCart();
+}
+
+function deleteItem(productId) {
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].product.id === productId) {
+      cart.splice(i, 1);
+      break;
+    }
+  }
+  renderCart();
+}
+
 // event
 btnCart.addEventListener("click", () => {
   productPage.classList.add("hidden");
@@ -350,4 +358,3 @@ btnBackToShop.addEventListener("click", () => {
 // render
 renderProduct();
 renderCart();
-renderTotal();
