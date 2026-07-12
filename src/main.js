@@ -151,6 +151,9 @@ const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
 const btnCheckout = document.querySelector(".btnCheckout");
 
+// badge
+const cartBadge = document.querySelector(".cartBadge");
+
 // functions
 function calculateTotal() {
   let totalSpending = 0;
@@ -260,6 +263,7 @@ function renderCart() {
 
   renderCheckout();
   renderTotal();
+  renderBadge();
 
   if (cart.length === 0) {
     cartArea.innerHTML = `
@@ -288,6 +292,21 @@ function renderCheckout() {
     btnCheckout.classList.add("hidden");
   } else {
     btnCheckout.classList.remove("hidden");
+  }
+}
+
+function renderBadge() {
+  console.log(cart.length);
+  let totalItem = 0;
+
+  if (cart.length === 0) {
+    cartBadge.classList.add("hidden");
+  } else {
+    for (let i = 0; i < cart.length; i++) {
+      totalItem += cart[i].quantity;
+    }
+    cartBadge.classList.remove("hidden");
+      cartBadge.innerText = `${totalItem}`;
   }
 }
 
