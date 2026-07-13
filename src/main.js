@@ -154,6 +154,12 @@ const btnCheckout = document.querySelector(".btnCheckout");
 // badge
 const cartBadge = document.querySelector(".cartBadge");
 
+// save function
+function saveCart(){
+  const cartString = JSON.stringify(cart);
+  localStorage.setItem("cart", cartString);
+}
+
 // functions
 function calculateTotal() {
   let totalSpending = 0;
