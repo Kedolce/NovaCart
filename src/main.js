@@ -146,6 +146,9 @@ const productArea = document.getElementById("productArea");
 const cartArea = document.getElementById("cartArea");
 const totalPrice = document.getElementById("totalPrice");
 
+// input
+const searchInput = document.getElementById("searchInput");
+
 // buttons
 const btnCart = document.getElementById("btnCart");
 const btnBackToShop = document.getElementById("btnBackToShop");
@@ -397,6 +400,18 @@ function calculateTotal() {
 }
 
 // event
+searchInput.addEventListener("input", () => {
+  const keyword = searchInput.value.trim();
+  console.log(keyword);
+
+  if(keyword === ""){
+    renderProduct(products);
+  } else{
+    const searchResult = searchProduct(keyword);
+    renderProduct(searchResult);
+  }
+})
+
 btnCart.addEventListener("click", () => {
   productPage.classList.add("hidden");
   cartPage.classList.remove("hidden");
