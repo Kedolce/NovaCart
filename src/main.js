@@ -159,31 +159,34 @@ const cartBadge = document.querySelector(".cartBadge");
 
 // functions
 // save function
-function saveCart(){
+function saveCart() {
   const cartString = JSON.stringify(cart);
   localStorage.setItem("cart", cartString);
 }
 
 // search function
-function searchProduct(keyword){
+function searchProduct(keyword) {
   const searchResult = [];
 
-  for(let i = 0; i < products.length; i++){
-    if(products[i].name.trim().toLowerCase().includes(keyword.toLowerCase())){
-      searchResult.push(products[i]);   
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].name.trim().toLowerCase().includes(keyword.toLowerCase())) {
+      searchResult.push(products[i]);
     }
   }
   return searchResult;
 }
 
+// filter category function
+function filterCategory() {}
+
 // restore function
-function restoreCart(){
+function restoreCart() {
   const storageCart = localStorage.getItem("cart");
-  if(storageCart === null){
+  if (storageCart === null) {
     return;
   }
   const parsedCart = JSON.parse(storageCart);
-  for(let i = 0; i < parsedCart.length; i++){
+  for (let i = 0; i < parsedCart.length; i++) {
     cart.push(parsedCart[i]);
   }
 }
@@ -328,7 +331,7 @@ function renderBadge() {
       totalItem += cart[i].quantity;
     }
     cartBadge.classList.remove("hidden");
-      cartBadge.innerText = `${totalItem}`;
+    cartBadge.innerText = `${totalItem}`;
   }
 }
 
@@ -399,18 +402,24 @@ function calculateTotal() {
   return totalSpending;
 }
 
+function checkout() {
+  cart.splice(0, cart.length);
+  renderCart();
+  saveCart();
+}
+
 // event
 searchInput.addEventListener("input", () => {
   const keyword = searchInput.value.trim();
   console.log(keyword);
 
-  if(keyword === ""){
+  if (keyword === "") {
     renderProduct(products);
-  } else{
+  } else {
     const searchResult = searchProduct(keyword);
     renderProduct(searchResult);
   }
-})
+});
 
 btnCart.addEventListener("click", () => {
   productPage.classList.add("hidden");
@@ -421,6 +430,10 @@ btnBackToShop.addEventListener("click", () => {
   productPage.classList.remove("hidden");
   cartPage.classList.add("hidden");
 });
+
+btnCheckout.addEventListener("click", () => {
+  checkout();
+})
 
 // render
 restoreCart();
