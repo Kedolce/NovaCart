@@ -48,7 +48,9 @@
             class="p-2 relative rounded-full lg:hover:bg-gray-700 transition-colors cursor-pointer"
           >
             <img src="/src/assets/grocery-store.png" alt="Cart" class="w-6" />
-            <span class="cartBadge absolute top-0 -right-2 min-w-5 h-5 flex items-center justify-center bg-red-400 rounded-full text-white text-xs">
+            <span
+              class="cartBadge absolute top-0 -right-2 min-w-5 h-5 flex items-center justify-center bg-red-400 rounded-full text-white text-xs"
+            >
               0
             </span>
           </button>
@@ -70,6 +72,15 @@
       <aside id="sidebar" class="hidden w-64 border-r bg-white min-h-screen">
         Sidebar
       </aside>
+
+      <!-- FILTER CATEGORY BUTTON -->
+      <nav id="categoryFilter" class="max-w-7xl mx-auto p-4 flex gap-5">
+        <button class="border border-emerald-400 rounded-full px-4 py-1 bg-emerald-400 cursor-pointer transition-colors duration-300 text-white">All</button>
+        <button class="border border-emerald-400 rounded-full px-4 py-1 lg:hover:bg-emerald-200 cursor-pointer transition-colors duration-300">Keyboard</button>
+        <button class="border border-emerald-400 rounded-full px-4 py-1 lg:hover:bg-emerald-200 cursor-pointer transition-colors duration-300">Mouse</button>
+        <button class="border border-emerald-400 rounded-full px-4 py-1 lg:hover:bg-emerald-200 cursor-pointer transition-colors duration-300">Monitor</button>
+        <button class="border border-emerald-400 rounded-full px-4 py-1 lg:hover:bg-emerald-200 cursor-pointer transition-colors duration-300">Headset</button>
+      </nav>
 
       <!-- PRODUCT AREA -->
       <main
@@ -96,10 +107,14 @@
         <!-- renderCart() -->
       </div>
 
-        <div id="cartSummary" class="p-5 border-t mt-10 border-emerald-400">
-          <p>Total: <span id="totalPrice"> Rp 0</span></p>
-          <button class="btnCheckout hidden bg-emerald-400 text-white rounded-lg py-2 px-4 mt-2 lg:hover:bg-emerald-600 transition-colors duration-300 cursor-pointer">Checkout</button>
-        </div>
+      <div id="cartSummary" class="p-5 border-t mt-10 border-emerald-400">
+        <p>Total: <span id="totalPrice"> Rp 0</span></p>
+        <button
+          class="btnCheckout hidden bg-emerald-400 text-white rounded-lg py-2 px-4 mt-2 lg:hover:bg-emerald-600 transition-colors duration-300 cursor-pointer"
+        >
+          Checkout
+        </button>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
